@@ -45,10 +45,23 @@ $("#signInBtn").on("click",function () {
 
   
 
+$("#signOutBtn").on("click",function () {
+    //Logout code
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+    }).catch(function (error) {
+        // An error happened.
+    });
+    
+})
+  
 
-  //Logout code
-  firebase.auth().signOut().then(function () {
-      // Sign-out successful.
-  }).catch(function (error) {
-      // An error happened.
-  });
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        alert("signed in");
+    } else {
+        // No user is signed in.
+        alert("signed out");
+    }
+});
