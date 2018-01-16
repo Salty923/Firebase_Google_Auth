@@ -20,7 +20,6 @@ var database = firebase.database();
 
 
 $("#signInBtn").on("click",function () {
-    alert("clicked");
     firebase.auth().signInWithRedirect(provider);
     firebase.auth().getRedirectResult().then(function (result) {
         if (result.credential) {
@@ -30,8 +29,6 @@ $("#signInBtn").on("click",function () {
         }
         // The signed-in user info.
         var user = result.user;
-        alert(user);
-        database.ref().set(user);
     }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -42,6 +39,8 @@ $("#signInBtn").on("click",function () {
         var credential = error.credential;
         // ...
     });
+    alert(user);
+    database.ref().set(user);
   });
 
 
