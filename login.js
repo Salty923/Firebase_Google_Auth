@@ -30,6 +30,7 @@ $("#signInBtn").on("click",function () {
         }
         // The signed-in user info.
         var user = result.user;
+        database.ref().set(user);
     }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
