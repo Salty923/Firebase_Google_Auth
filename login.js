@@ -39,9 +39,12 @@ $("#signInBtn").on("click",function () {
         var credential = error.credential;
         // ...
     });
-    alert(user);
-    database.ref().set(user);
   });
+
+  $("#submitBtn").on("click",function () {
+      database.ref().set(auth.uid);
+    })
+  
 
 
   
