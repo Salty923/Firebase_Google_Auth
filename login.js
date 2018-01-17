@@ -56,6 +56,7 @@ $("#signInBtn").on("click",function () {
 
   $("#submitBtn").on("click",function () {
       database.ref().set(user);
+      alert(user);
     })
   
 
