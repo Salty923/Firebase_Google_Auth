@@ -79,10 +79,9 @@ $("#signOutBtn").on("click",function () {
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User is signed in.
-        $("#currentUser").html(user);
-        database.ref().set(user);
+        $("#currentUser").html("Welcome");
     } else {
         // No user is signed in.
-        $("#currentUser").html("signed out");
+        $("#currentUser").html("Please sign in");
     }
 });
