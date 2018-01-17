@@ -18,6 +18,20 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
 
 var user = firebase.auth().currentUser;
+var userId = firebase.auth().currentUser.uid;
+
+//Get the firebase reference    
+database.onAuth(function (authData) {
+    if (authData && isNewUser) {
+        // save the user's profile into Firebase so we can list users,
+        // use them in Security and Firebase Rules, and show profiles
+        ref.child("users").child(authData.uid).set({
+            provider: authData.provider,
+            name: getName(authData)
+            //some more user data
+        });
+    }
+});
 
 
 var name, email, photoUrl, uid, emailVerified;
