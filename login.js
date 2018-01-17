@@ -18,6 +18,9 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
 
 var user = firebase.auth().currentUser;
+
+$("#currentUser").html(user);
+
 var name, email, photoUrl, uid, emailVerified;
 
 if (user != null) {
