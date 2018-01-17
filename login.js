@@ -21,8 +21,8 @@ var user = firebase.auth().currentUser;
 
 
 //Get the firebase reference    
-//var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
-firebase.auth(function (authData) {
+var ref = new Firebase("https://pet-project-1515724361205.firebaseio.com");
+ref.onAuth(function (authData) {
     if (authData && isNewUser) {
         // save the user's profile into Firebase so we can list users,
         // use them in Security and Firebase Rules, and show profiles
