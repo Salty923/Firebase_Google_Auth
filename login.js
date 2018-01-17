@@ -42,7 +42,7 @@ $("#signInBtn").on("click",function () {
   });
 
   $("#submitBtn").on("click",function () {
-      database.ref().set(auth.uid);
+      database.ref().set("demo");
     })
   
 
