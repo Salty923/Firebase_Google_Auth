@@ -19,7 +19,6 @@ var database = firebase.database();
 
 var user = firebase.auth().currentUser;
 
-$("#currentUser").html(user);
 
 var name, email, photoUrl, uid, emailVerified;
 
@@ -80,9 +79,9 @@ $("#signOutBtn").on("click",function () {
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User is signed in.
-        alert("signed in");
+        $("#currentUser").html("signed in");
     } else {
         // No user is signed in.
-        alert("signed out");
+        $("#currentUser").html("signed in");
     }
 });
