@@ -82,6 +82,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         $("#currentUser").html("signed in");
     } else {
         // No user is signed in.
-        $("#currentUser").html("signed in");
+        $("#currentUser").html("signed out");
     }
 });
