@@ -18,7 +18,6 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database();
 
 var user = firebase.auth().currentUser;
-var userId = firebase.auth().currentUser.uid;
 
 //Get the firebase reference    
 database.onAuth(function (authData) {
