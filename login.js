@@ -20,19 +20,19 @@ var database = firebase.database();
 var user = firebase.auth().currentUser;
 
 
-//Get the firebase reference    
-var ref = new Firebase("https://pet-project-1515724361205.firebaseio.com");
-ref.onAuth(function (authData) {
-    if (authData && isNewUser) {
-        // save the user's profile into Firebase so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        ref.child("users").child(authData.uid).set({
-            provider: authData.provider,
-            name: getName(authData)
-            //some more user data
-        });
-    }
-});
+// //Get the firebase reference    
+// var ref = new Firebase("https://pet-project-1515724361205.firebaseio.com");
+// ref.onAuth(function (authData) {
+//     if (authData && isNewUser) {
+//         // save the user's profile into Firebase so we can list users,
+//         // use them in Security and Firebase Rules, and show profiles
+//         ref.child("users").child(authData.uid).set({
+//             provider: authData.provider,
+//             name: getName(authData)
+//             //some more user data
+//         });
+//     }
+// });
 
 
 var name, email, photoUrl, uid, emailVerified;
@@ -95,6 +95,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User is signed in.
         $("#currentUser").html("Welcome");
+        console.log("Welcome UID:" + user.uid);
     } else {
         // No user is signed in.
         $("#currentUser").html("Please sign in");
