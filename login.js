@@ -59,7 +59,7 @@ $("#signInBtn").on("click",function () {
             if (authData && isNewUser) {
                 // save the user's profile into Firebase so we can list users,
                 // use them in Security and Firebase Rules, and show profiles
-                database.child("users").child(authData.uid).set({
+                database.ref("users").child(authData.uid).set({
                     provider: authData.provider,
                     name: getName(authData)
                     //some more user data
