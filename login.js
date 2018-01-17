@@ -70,16 +70,7 @@ $("#signInBtn").on("click",function () {
         var credential = error.credential;
         // ...
     });
-    if (authData && isNewUser) {
-        // save the user's profile into Firebase so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        database.ref("users").child(authData.uid).set({
-            provider: authData.provider,
-            name: getName(authData)
-            //some more user data
-
-        });
-    }
+    
   });
 
   $("#submitBtn").on("click",function () {
@@ -107,8 +98,23 @@ firebase.auth().onAuthStateChanged(function (user) {
         // User is signed in.
         $("#currentUser").html("Welcome");
         console.log("Welcome UID:" + user.uid);
+        database.ref("users").child(user.uid).set({
+            provider: "me",
+        })
     } else {
         // No user is signed in.
         $("#currentUser").html("Please sign in");
     }
 });
+
+
+// if (authData && isNewUser) {
+//     // save the user's profile into Firebase so we can list users,
+//     // use them in Security and Firebase Rules, and show profiles
+//     database.ref("users").child(authData.uid).set({
+//         provider: authData.provider,
+//         name: getName(authData)
+//         //some more user data
+
+//     });
+// }
