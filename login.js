@@ -56,17 +56,6 @@ $("#signInBtn").on("click",function () {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // ...
-            if (authData && isNewUser) {
-                // save the user's profile into Firebase so we can list users,
-                // use them in Security and Firebase Rules, and show profiles
-                database.ref("users").child(authData.uid).set({
-                    provider: authData.provider,
-                    name: getName(authData)
-                    //some more user data
-                
-                });
-            }
-
         }
         // The signed-in user info.
         var user = result.user;
@@ -81,6 +70,16 @@ $("#signInBtn").on("click",function () {
         var credential = error.credential;
         // ...
     });
+    if (authData && isNewUser) {
+        // save the user's profile into Firebase so we can list users,
+        // use them in Security and Firebase Rules, and show profiles
+        database.ref("users").child(authData.uid).set({
+            provider: authData.provider,
+            name: getName(authData)
+            //some more user data
+
+        });
+    }
   });
 
   $("#submitBtn").on("click",function () {
