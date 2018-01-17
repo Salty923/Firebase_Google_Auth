@@ -23,29 +23,29 @@ var user = firebase.auth().currentUser;
 // //Get the firebase reference    
 // var ref = new Firebase("https://pet-project-1515724361205.firebaseio.com");
 // ref.onAuth(function (authData) {
-//     if (authData && isNewUser) {
-//         // save the user's profile into Firebase so we can list users,
-//         // use them in Security and Firebase Rules, and show profiles
-//         ref.child("users").child(authData.uid).set({
-//             provider: authData.provider,
-//             name: getName(authData)
-//             //some more user data
-//         });
+    // if (authData && isNewUser) {
+    //     // save the user's profile into Firebase so we can list users,
+    //     // use them in Security and Firebase Rules, and show profiles
+    //     ref.child("users").child(authData.uid).set({
+    //         provider: authData.provider,
+    //         name: getName(authData)
+    //         //some more user data
+    //     });
 //     }
 // });
 
 
-var name, email, photoUrl, uid, emailVerified;
+// var name, email, photoUrl, uid, emailVerified;
 
-if (user != null) {
-    user.providerData.forEach(function (profile) {
-        console.log("Sign-in provider: " + profile.providerId);
-        console.log("  Provider-specific UID: " + profile.uid);
-        console.log("  Name: " + profile.displayName);
-        console.log("  Email: " + profile.email);
-        console.log("  Photo URL: " + profile.photoURL);
-    });
-}
+// if (user != null) {
+//     user.providerData.forEach(function (profile) {
+//         console.log("Sign-in provider: " + profile.providerId);
+//         console.log("  Provider-specific UID: " + profile.uid);
+//         console.log("  Name: " + profile.displayName);
+//         console.log("  Email: " + profile.email);
+//         console.log("  Photo URL: " + profile.photoURL);
+//     });
+// }
 
 
 
@@ -56,9 +56,21 @@ $("#signInBtn").on("click",function () {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // ...
+            if (authData && isNewUser) {
+                // save the user's profile into Firebase so we can list users,
+                // use them in Security and Firebase Rules, and show profiles
+                ref.child("users").child(authData.uid).set({
+                    provider: authData.provider,
+                    name: getName(authData)
+                    //some more user data
+                
+                });
+            }
+
         }
         // The signed-in user info.
         var user = result.user;
+        var userId = user.uid;
     }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
