@@ -19,6 +19,8 @@ var database = firebase.database();
 
 var user = firebase.auth().currentUser;
 
+var dbUsers = database.ref("users");
+
 
 // //Get the firebase reference    
 // var ref = new Firebase("https://pet-project-1515724361205.firebaseio.com");
@@ -73,10 +75,10 @@ $("#signInBtn").on("click",function () {
     
   });
 
-  $("#submitBtn").on("click",function () {
-      database.ref().set(user);
-      alert(user);
-    })
+//   $("#submitBtn").on("click",function () {
+//       database.ref().set(user);
+//       alert(user);
+//     })
   
 
 
@@ -98,8 +100,16 @@ firebase.auth().onAuthStateChanged(function (user) {
         // User is signed in.
         $("#currentUser").html("Welcome");
         console.log("Welcome UID:" + user.uid);
-        database.ref("users").child(user.uid).set({
-            provider: "me",
+        dbUsers.child(user.uid).once("value",function (snapshot) {
+            if(snapshot.val() !== null){
+                alert("user exist");
+                return;
+            }else{
+                database.ref("users").child(user.uid).set({
+                    provider: "me",
+                    place: "Munster"
+                })
+             }
         })
     } else {
         // No user is signed in.
@@ -108,13 +118,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 
-// if (authData && isNewUser) {
-//     // save the user's profile into Firebase so we can list users,
-//     // use them in Security and Firebase Rules, and show profiles
-//     database.ref("users").child(authData.uid).set({
-//         provider: authData.provider,
-//         name: getName(authData)
-//         //some more user data
-
+// function checkIfUserExists(userId) {
+//     var usersRef = new Firebase(USERS_LOCATION);
+//     usersRef.child(userId).once('value', function (snapshot) {
+//         var exists = (snapshot.val() !== null);
+//         alert("exists");
 //     });
-// }
